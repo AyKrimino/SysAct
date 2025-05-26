@@ -1,22 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"os"
-
+	"github.com/AyKrimino/SysAct/internal/logging"
 	"github.com/AyKrimino/SysAct/internal/tui"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
 func main() {
-	f, err := tea.LogToFile("debug.log", "debug")
-	defer f.Close()
-	if err != nil {
-		fmt.Println("fatal:", err)
-		os.Exit(1)
-	}
+	logging.InitLogger()
 
 	l := []list.Item{
 		tui.NewAction("Logout", "End the current user session and return to the login screen."),
@@ -29,6 +21,6 @@ func main() {
 
 	p := tea.NewProgram(m, tea.WithAltScreen())
 	if _, err := p.Run(); err != nil {
-		log.Fatalf("unable to run the app %v", err)
+		logging.FatalLogger.Fatalf("Unable to run the app %v", err)
 	}
 }
