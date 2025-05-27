@@ -35,6 +35,12 @@ func (m MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.Up()
 		case "down", "j":
 			m.Down()
+		case "enter", " ":
+			command, err := system.PerformAction(m.listIndex)
+			if err != nil {
+				logging.ErrorLogger.Fatalf("Command execution failed: %v", err)
+			}
+			logging.InfoLogger.Printf("Command %s executed successfully", command)
 		}
 	case tea.WindowSizeMsg:
 		logging.InfoLogger.Printf("Window resized: width=%d, height=%d", msg.Width, msg.Height)

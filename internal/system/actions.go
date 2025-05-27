@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os/exec"
 	"runtime"
+
+	"github.com/AyKrimino/SysAct/internal/logging"
 )
 
 const (
@@ -36,18 +38,19 @@ func InitActions() error {
 }
 
 func execute(command string) error {
-	_, err := exec.Command(command).Output()
+	_, err := exec.Command("bash", "-c", command).Output()
 	if err != nil {
 		return fmt.Errorf("Failed to execute command %s, %v", command, err)
 	}
 	return nil
 }
 
-func PerformAction(action uint8) error {
+func PerformAction(action uint8) (string, error) {
 	if runtime.GOOS != "linux" {
-		return fmt.Errorf("Can't execute this on a %s machine", runtime.GOOS)
+		return "", fmt.Errorf("Can't execute this on a %s machine", runtime.GOOS)
 	}
 
 	err := execute(actions[action])
-	return err
+	logging.InfoLogger.Println("action performed successfully")
+	return actions[action], err
 }
