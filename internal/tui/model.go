@@ -10,6 +10,8 @@ type MainModel struct {
 	list      list.Model
 	styles    Styles
 	listIndex uint8
+	width     int
+	height    int
 }
 
 func NewMainModel(actions []list.Item, title string) MainModel {
@@ -18,8 +20,10 @@ func NewMainModel(actions []list.Item, title string) MainModel {
 	}
 	m.list.Title = title
 	m.styles = Styles{
-		docStyle: lipgloss.NewStyle().Margin(1, 2),
+		docStyle: lipgloss.NewStyle().Margin(2, 4),
 	}
+	m.list.SetShowHelp(false)
+	m.list.SetFilteringEnabled(false)
 
 	return m
 }

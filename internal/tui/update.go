@@ -43,9 +43,13 @@ func (m MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			logging.InfoLogger.Printf("Command %s executed successfully", command)
 		}
 	case tea.WindowSizeMsg:
-		logging.InfoLogger.Printf("Window resized: width=%d, height=%d", msg.Width, msg.Height)
-		h, v := m.styles.docStyle.GetFrameSize()
-		m.list.SetSize(msg.Width-h, msg.Height-v)
+		m.width = msg.Width
+		m.height = msg.Height
+		logging.InfoLogger.Printf("Window resized: width=%d, height=%d", m.width, m.height)
+		//h, v := m.styles.docStyle.GetFrameSize()
+		listWidth := int(float64(msg.Width) * 0.5)
+		listHeight := int(float64(msg.Height) * 0.6)
+		m.list.SetSize(listWidth, listHeight)
 	}
 
 	var cmd tea.Cmd
