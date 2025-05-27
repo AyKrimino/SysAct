@@ -7,8 +7,9 @@ import (
 )
 
 type MainModel struct {
-	list   list.Model
-	styles Styles
+	list      list.Model
+	styles    Styles
+	listIndex uint8
 }
 
 func NewMainModel(actions []list.Item, title string) MainModel {
