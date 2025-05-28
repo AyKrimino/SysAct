@@ -32,7 +32,7 @@ func getLogoutCommandBasedOnDesktopEnvironmentOrWindowManager() (string, error) 
 
 	command := ""
 	for key, val := range commands {
-		if strings.EqualFold(key, output) {
+		if strings.Contains(strings.ToLower(output), strings.ToLower(key)) {
 			command = val
 		}
 	}
