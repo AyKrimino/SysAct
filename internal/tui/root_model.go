@@ -45,6 +45,7 @@ func (rm RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				logging.ErrorLogger.Fatalf("Command execution failed: %v", err)
 			}
 			logging.InfoLogger.Printf("Command %s executed successfully", command)
+			return rm, tea.Quit
 		}
 		rm.screen = MainModelScreen
 		return rm, rm.main.Init()
