@@ -3,6 +3,7 @@ package tui
 import (
 	"github.com/AyKrimino/SysAct/internal/logging"
 	"github.com/AyKrimino/SysAct/internal/system"
+	"github.com/charmbracelet/bubbles/timer"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -35,6 +36,7 @@ func (rm RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case ConfirmRequestedMsg:
 		logging.InfoLogger.Printf("action %d requested", msg.Action)
+		rm.confirm = NewConfirmModel()
 		rm.confirm.action = msg.Action
 		rm.screen = ConfirmModelScreen
 		return rm, rm.confirm.Init()
@@ -47,6 +49,9 @@ func (rm RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			logging.InfoLogger.Printf("Command %s executed successfully", command)
 			return rm, tea.Quit
 		}
+		rm.screen = MainModelScreen
+		return rm, rm.main.Init()
+	case timer.TimeoutMsg:
 		rm.screen = MainModelScreen
 		return rm, rm.main.Init()
 	}

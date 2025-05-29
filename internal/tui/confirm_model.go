@@ -1,13 +1,27 @@
 package tui
 
-import tea "github.com/charmbracelet/bubbletea"
+import (
+	"time"
+
+	"github.com/charmbracelet/bubbles/timer"
+	tea "github.com/charmbracelet/bubbletea"
+)
+
+const timeout = time.Second * 5
 
 type ConfirmModel struct {
 	action uint8
+	timer  timer.Model
+}
+
+func NewConfirmModel() ConfirmModel {
+	return ConfirmModel{
+		timer: timer.NewWithInterval(timeout, time.Millisecond),
+	}
 }
 
 func (cm ConfirmModel) Init() tea.Cmd {
-	return nil
+	return cm.timer.Init()
 }
 
 type ConfirmRequestedMsg struct {

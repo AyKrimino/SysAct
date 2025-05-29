@@ -24,7 +24,9 @@ func main() {
 
 	m := tui.NewMainModel(l, "System Actions")
 
-	rm := tui.NewRootModel(m, tui.ConfirmModel{})
+	cm := tui.NewConfirmModel()
+
+	rm := tui.NewRootModel(m, cm)
 
 	p := tea.NewProgram(rm, tea.WithAltScreen())
 	if _, err := p.Run(); err != nil {

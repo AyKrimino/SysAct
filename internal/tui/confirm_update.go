@@ -2,12 +2,16 @@ package tui
 
 import (
 	"github.com/AyKrimino/SysAct/internal/logging"
+	"github.com/charmbracelet/bubbles/timer"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
 func (cm ConfirmModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	var cmd tea.Cmd = nil
+	var cmd tea.Cmd
 	switch msg := msg.(type) {
+	case timer.TickMsg:
+		cm.timer, cmd = cm.timer.Update(msg)
+		return cm, cmd
 	case tea.KeyMsg:
 		logging.InfoLogger.Printf("Confirm Model: key %s pressed", msg.String())
 		switch msg.String() {
@@ -21,5 +25,5 @@ func (cm ConfirmModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return cm, cmd
 		}
 	}
-	return cm, cmd
+	return cm, nil
 }
