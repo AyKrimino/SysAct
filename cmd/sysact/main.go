@@ -24,7 +24,9 @@ func main() {
 
 	m := tui.NewMainModel(l, "System Actions")
 
-	p := tea.NewProgram(m, tea.WithAltScreen())
+	rm := tui.NewRootModel(m, tui.ConfirmModel{})
+
+	p := tea.NewProgram(rm, tea.WithAltScreen())
 	if _, err := p.Run(); err != nil {
 		logging.FatalLogger.Fatalf("Unable to run the app %v", err)
 	}
