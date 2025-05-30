@@ -12,11 +12,15 @@ const timeout = time.Second * 5
 type ConfirmModel struct {
 	action uint8
 	timer  timer.Model
+	styles Styles
+	width  int
+	height int
 }
 
 func NewConfirmModel() ConfirmModel {
 	return ConfirmModel{
-		timer: timer.NewWithInterval(timeout, time.Millisecond),
+		timer:  timer.NewWithInterval(timeout, time.Millisecond),
+		styles: NewConfirmModelStyles(),
 	}
 }
 

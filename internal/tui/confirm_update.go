@@ -24,6 +24,10 @@ func (cm ConfirmModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			cmd = func() tea.Msg { return ConfirmResultMsg{confirmed: false} }
 			return cm, cmd
 		}
+	case tea.WindowSizeMsg:
+		cm.width = msg.Width
+		cm.height = msg.Height
+		logging.InfoLogger.Printf("Window resized: width=%d, height=%d", cm.width, cm.height)
 	}
 	return cm, nil
 }

@@ -3,7 +3,6 @@ package tui
 import (
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
 )
 
 type MainModel struct {
@@ -19,9 +18,7 @@ func NewMainModel(actions []list.Item, title string) MainModel {
 		list: list.New(actions, list.NewDefaultDelegate(), 0, 0),
 	}
 	m.list.Title = title
-	m.styles = Styles{
-		docStyle: lipgloss.NewStyle().Margin(2, 4),
-	}
+	m.styles = NewMainModelStyles()
 	m.list.SetShowHelp(false)
 	m.list.SetFilteringEnabled(false)
 

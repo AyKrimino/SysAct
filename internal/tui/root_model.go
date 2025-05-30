@@ -52,6 +52,7 @@ func (rm RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		rm.screen = MainModelScreen
 		return rm, rm.main.Init()
 	case timer.TimeoutMsg:
+		logging.InfoLogger.Println("Timer timed out")
 		rm.screen = MainModelScreen
 		return rm, rm.main.Init()
 	}
