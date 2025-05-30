@@ -11,8 +11,18 @@ type Styles struct {
 
 func NewMainModelStyles() Styles {
 	return Styles{
+		titleStyle: lipgloss.NewStyle().
+			Align(lipgloss.Center).
+			Bold(true).
+			Foreground(lipgloss.Color("#87CEEB")).
+			Margin(0, 4).
+			MarginBottom(1),
+
 		docStyle: lipgloss.NewStyle().
-			Margin(2, 4),
+			Margin(1, 4).
+			BorderStyle(lipgloss.NormalBorder()).
+			BorderForeground(lipgloss.Color("#5A5A5A")).
+			Padding(1, 2),
 	}
 }
 
