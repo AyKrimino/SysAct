@@ -14,19 +14,25 @@ default_language = "en"
 confirm_timeout = 5
 
 # Which key the user presses to move up in lists
-key_up = ["up", "k"]        # examples: "up", "k"
+key_up = "up"        # examples: "up", "k"
 
 # Which key the user presses to move down in lists
-key_down = ["down", "j"]    # examples: "down", "j"
+key_down = "down"    # examples: "down", "j"
 
 # Which key the user presses to confirm an action
-key_confirm = ["enter", "y"]  # examples: "enter", "y"
+key_confirm = "enter"  # examples: "enter", "y"
 
 # Which key the user presses to cancel/exit
-key_cancel = ["esc", "n"]     # examples: "esc", "n"
+key_cancel = "esc"     # examples: "esc", "n"
+
+# Which key the user presses to quit screen
+key_quit = "q"     # examples "q", "ctrl+c"
+
+# Which key the user presses to select an action
+key_select = "enter"  # examples "enter", " "
 
 # Show help text at bottom of main screen
-show_help = true
+show_help = false
 
 # Enable or disable logging to file
 enable_logging = true
@@ -39,13 +45,10 @@ log_level = "info"
 ##############################
 
 # Primary accent color (hex)
-primary_color = "#50fa7b"
+primary_color   = "#87CEEB"
 
 # Secondary accent color (hex)
-secondary_color = "#ff79c6"
-
-# Style for highlighted items: any of "bold", "underline", "reverse", or combination
-highlight_style = "bold_underline"
+secondary_color = "#FFD700"
 
 ##############################
 # Localization Strings
@@ -53,7 +56,7 @@ highlight_style = "bold_underline"
 
 # English (default)
 [lang.en]
-title            = "System Actions"
+title            = "SysAct - System Actions"
 logout_label     = "Logout"
 logout_desc      = "End the current user session and return to the login screen."
 suspend_label    = "Suspend"
@@ -63,14 +66,12 @@ reboot_desc      = "Restart the system, closing all applications and reinitializ
 poweroff_label   = "Poweroff"
 poweroff_desc    = "Completely shut down the system, turning off all hardware components."
 confirm_title    = "Are you sure?"
-confirm_body     = "Press {{key_confirm}} to confirm or wait {{confirm_timeout}}s…"
-confirm_yes      = "Yes"
-confirm_no       = "No"
-help_text        = "↑/↓: navigate • {{key_confirm}}: select • {{key_cancel}}: quit"
+confirm_body     = "Press {{key_confirm}} to confirm"
+cancel_body      = "Canceling in"
 
 # French
 [lang.fr]
-title            = "Actions Système"
+title            = "SysAct - Actions Système"
 logout_label     = "Se déconnecter"
 logout_desc      = "Terminez la session en cours et revenez à l'écran de connexion."
 suspend_label    = "Suspendre"
@@ -80,14 +81,12 @@ reboot_desc      = "Redémarrez le système, en fermant toutes les applications.
 poweroff_label   = "Arrêter"
 poweroff_desc    = "Arrêtez complètement le système et éteignez le matériel."
 confirm_title    = "Êtes-vous sûr ?"
-confirm_body     = "Appuyez sur {{key_confirm}} pour confirmer ou attendez {{confirm_timeout}}s…"
-confirm_yes      = "Oui"
-confirm_no       = "Non"
-help_text        = "↑/↓: naviguer • {{key_confirm}}: valider • {{key_cancel}}: quitter"
+confirm_body     = "Appuyez sur {{key_confirm}} pour confirmer"
+cancel_body      = "Annulation dans"
 
 # Spanish
 [lang.es]
-title            = "Acciones del Sistema"
+title            = "SysAct - Acciones del Sistema"
 logout_label     = "Cerrar sesión"
 logout_desc      = "Finaliza la sesión actual y vuelve a la pantalla de inicio de sesión."
 suspend_label    = "Suspender"
@@ -97,14 +96,12 @@ reboot_desc      = "Reinicia el sistema, cerrando todas las aplicaciones."
 poweroff_label   = "Apagar"
 poweroff_desc    = "Apaga completamente el sistema, apagando el hardware."
 confirm_title    = "¿Estás seguro?"
-confirm_body     = "Pulsa {{key_confirm}} para confirmar o espera {{confirm_timeout}}s…"
-confirm_yes      = "Sí"
-confirm_no       = "No"
-help_text        = "↑/↓: navegar • {{key_confirm}}: seleccionar • {{key_cancel}}: salir"
+confirm_body     = "Pulsa {{key_confirm}} para confirmar"
+cancel_body      = "Cancelando en"
 
 # Arabic (in right-to-left contexts users will need a terminal supporting RTL)
 [lang.ar]
-title            = "إجراءات النظام"
+title            = "SysAct - إجراءات النظام"
 logout_label     = "تسجيل الخروج"
 logout_desc      = "إنهاء الجلسة الحالية والعودة إلى شاشة تسجيل الدخول."
 suspend_label    = "تعليق"
@@ -114,7 +111,5 @@ reboot_desc      = "إعادة تشغيل النظام، وإغلاق جميع �
 poweroff_label   = "إيقاف التشغيل"
 poweroff_desc    = "إيقاف النظام بالكامل وإيقاف تشغيل الأجهزة."
 confirm_title    = "هل أنت متأكد؟"
-confirm_body     = "اضغط {{key_confirm}} للتأكيد أو انتظر {{confirm_timeout}}ث…"
-confirm_yes      = "نعم"
-confirm_no       = "لا"
-help_text        = "↑/↓: تنقل • {{key_confirm}}: تأكيد • {{key_cancel}}: خروج"
+confirm_body     = "اضغط {{key_confirm}} للتأكيد"
+cancel_body      = "سيتم الإلغاء خلال"

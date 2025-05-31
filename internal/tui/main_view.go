@@ -3,7 +3,9 @@ package tui
 import "github.com/charmbracelet/lipgloss"
 
 func (m MainModel) View() string {
-	title := m.styles.titleStyle.Render("SysAct — System Actions")
+	defaultLang := m.config.Languages[m.config.DefaultLanguage]
+
+	title := m.styles.titleStyle.Render(defaultLang.Title)
 
 	content := m.styles.docStyle.Render(m.list.View())
 

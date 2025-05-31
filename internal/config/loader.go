@@ -4,23 +4,26 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/AyKrimino/SysAct/internal/logging"
 	"github.com/pelletier/go-toml/v2"
 )
 
 type Config struct {
-	DefaultLanguage string   `toml:"default_language"`
-	ConfirmTimeout  int      `toml:"confirm_timeout"`
-	KeyUp           []string `toml:"key_up"`
-	KeyDown         []string `toml:"key_down"`
-	KeyConfirm      []string `toml:"key_confirm"`
-	KeyCancel       []string `toml:"key_cancel"`
-	ShowHelp        bool     `toml:"show_help"`
-	EnableLogging   bool     `toml:"enable_logging"`
-	PrimaryColor    string   `toml:"primary_color"`
-	SecondaryColor  string   `toml:"secondary_color"`
-	HighlightStyle  string   `toml:"highlight_style"`
+	DefaultLanguage string `toml:"default_language"`
+	ConfirmTimeout  int    `toml:"confirm_timeout"`
+	KeyUp           string `toml:"key_up"`
+	KeyDown         string `toml:"key_down"`
+	KeyConfirm      string `toml:"key_confirm"`
+	KeyCancel       string `toml:"key_cancel"`
+	KeyQuit         string `toml:"key_quit"`
+	KeySelect       string `toml:"key_select"`
+	ShowHelp        bool   `toml:"show_help"`
+	EnableLogging   bool   `toml:"enable_logging"`
+	PrimaryColor    string `toml:"primary_color"`
+	SecondaryColor  string `toml:"secondary_color"`
+	HighlightStyle  string `toml:"highlight_style"`
 
 	Languages map[string]Locale `toml:"lang"`
 }
@@ -38,10 +41,7 @@ type Locale struct {
 
 	ConfirmTitle string `toml:"confirm_title"`
 	ConfirmBody  string `toml:"confirm_body"`
-	ConfirmYes   string `toml:"confirm_yes"`
-	ConfirmNo    string `toml:"confirm_no"`
-
-	HelpText string `toml:"help_text"`
+	CancelBody   string `toml:"cancel_body"`
 }
 
 func LoadConfig() (*Config, error) {
@@ -76,5 +76,13 @@ func LoadConfig() (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	defaultLang := cfg.Languages[cfg.DefaultLanguage]
+	raw := defaultLang.ConfirmBody
+	keyName := cfg.KeyConfirm
+	filled := strings.ReplaceAll(raw, "{{key_confirm}}", "`"+keyName+"`")
+	defaultLang.ConfirmBody = filled
+	cfg.Languages[cfg.DefaultLanguage] = defaultLang
+
 	return cfg, nil
 }

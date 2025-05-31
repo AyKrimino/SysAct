@@ -8,8 +8,6 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-const timeout = time.Second * 5
-
 type ConfirmModel struct {
 	action uint8
 	timer  timer.Model
@@ -21,8 +19,8 @@ type ConfirmModel struct {
 
 func NewConfirmModel(config *config.Config) ConfirmModel {
 	return ConfirmModel{
-		timer:  timer.NewWithInterval(timeout, time.Millisecond),
-		styles: NewConfirmModelStyles(),
+		timer:  timer.NewWithInterval(time.Duration(config.ConfirmTimeout)*time.Second, time.Millisecond),
+		styles: NewConfirmModelStyles(config),
 		config: config,
 	}
 }

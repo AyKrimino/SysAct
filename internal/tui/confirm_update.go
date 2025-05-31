@@ -15,11 +15,11 @@ func (cm ConfirmModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		logging.InfoLogger.Printf("Confirm Model: key %s pressed", msg.String())
 		switch msg.String() {
-		case "y", "Y":
+		case cm.config.KeyConfirm:
 			logging.InfoLogger.Println("confirmed")
 			cmd = func() tea.Msg { return ConfirmResultMsg{confirmed: true} }
 			return cm, cmd
-		default:
+		case cm.config.KeyCancel:
 			logging.InfoLogger.Println("rejected")
 			cmd = func() tea.Msg { return ConfirmResultMsg{confirmed: false} }
 			return cm, cmd

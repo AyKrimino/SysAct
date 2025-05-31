@@ -21,8 +21,8 @@ func NewMainModel(actions []list.Item, title string, config *config.Config) Main
 		config: config,
 	}
 	m.list.Title = title
-	m.styles = NewMainModelStyles()
-	m.list.SetShowHelp(false)
+	m.styles = NewMainModelStyles(config)
+	m.list.SetShowHelp(m.config.ShowHelp)
 	m.list.SetFilteringEnabled(false)
 
 	return m

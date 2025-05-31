@@ -21,13 +21,6 @@ func main() {
 		logging.FatalLogger.Fatalf("Unable to initialize actions %v", err)
 	}
 
-	//l := []list.Item{
-	//	tui.NewAction("Logout", "End the current user session and return to the login screen."),
-	//	tui.NewAction("Suspend", "Pause the system, saving the session to memory and entering a low-power state."),
-	//	tui.NewAction("Reboot", "Restart the system, closing all applications and reinitializing the operating system."),
-	//	tui.NewAction("Poweroff", "Completely shut down the system, turning off all hardware components."),
-	//}
-
 	defaultLang := cfg.Languages[cfg.DefaultLanguage]
 
 	l := []list.Item{
