@@ -1,11 +1,19 @@
 package tui
 
-import "github.com/charmbracelet/lipgloss"
+import (
+	"github.com/AyKrimino/SysAct/internal/logging"
+	"github.com/charmbracelet/lipgloss"
+)
 
 func (cm ConfirmModel) View() string {
-	title := cm.styles.titleStyle.Render("System Action Confirmation")
-	description := cm.styles.descriptionStyle.Render("Confirm your action by pressing the 'y' key.")
-	timer := cm.styles.timerStyle.Render("Canceling in " + cm.timer.View())
+	defaultLang := cm.config.Languages[cm.config.DefaultLanguage]
+
+	title := cm.styles.titleStyle.Render(defaultLang.ConfirmTitle)
+
+	logging.InfoLogger.Println(defaultLang.ConfirmBody)
+
+	description := cm.styles.descriptionStyle.Render(defaultLang.ConfirmBody)
+	timer := cm.styles.timerStyle.Render(defaultLang.CancelBody + "  " + cm.timer.View())
 
 	dialog := lipgloss.JoinVertical(
 		lipgloss.Center,

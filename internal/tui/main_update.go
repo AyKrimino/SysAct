@@ -29,13 +29,13 @@ func (m MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		logging.InfoLogger.Println("Key pressed:", msg.String())
 		switch msg.String() {
-		case "ctrl+c", "q":
+		case m.config.KeyQuit:
 			return m, tea.Quit
-		case "up", "k":
+		case m.config.KeyUp:
 			m.Up()
-		case "down", "j":
+		case m.config.KeyDown:
 			m.Down()
-		case "enter", " ":
+		case m.config.KeySelect:
 			var cmd tea.Cmd
 			cmd = func() tea.Msg { return ConfirmRequestedMsg{Action: m.listIndex} }
 			return m, cmd

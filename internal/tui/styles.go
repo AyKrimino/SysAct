@@ -1,6 +1,9 @@
 package tui
 
-import "github.com/charmbracelet/lipgloss"
+import (
+	"github.com/AyKrimino/SysAct/internal/config"
+	"github.com/charmbracelet/lipgloss"
+)
 
 type Styles struct {
 	docStyle         lipgloss.Style
@@ -9,35 +12,35 @@ type Styles struct {
 	timerStyle       lipgloss.Style
 }
 
-func NewMainModelStyles() Styles {
+func NewMainModelStyles(cfg *config.Config) Styles {
 	return Styles{
 		titleStyle: lipgloss.NewStyle().
 			Align(lipgloss.Center).
 			Bold(true).
-			Foreground(lipgloss.Color("#87CEEB")).
+			Foreground(lipgloss.Color(cfg.PrimaryColor)).
 			Margin(0, 4).
 			MarginBottom(1),
 
 		docStyle: lipgloss.NewStyle().
 			Margin(1, 4).
 			BorderStyle(lipgloss.NormalBorder()).
-			BorderForeground(lipgloss.Color("#5A5A5A")).
+			BorderForeground(lipgloss.Color(cfg.SecondaryColor)).
 			Padding(1, 2),
 	}
 }
 
-func NewConfirmModelStyles() Styles {
+func NewConfirmModelStyles(cfg *config.Config) Styles {
 	return Styles{
 		titleStyle: lipgloss.NewStyle().
 			Align(lipgloss.Center).
 			Bold(true).
-			Foreground(lipgloss.Color("#FFD700")).
-			Background(lipgloss.Color("#1E1E1E")).
+			Foreground(lipgloss.Color(cfg.SecondaryColor)).
+			Background(lipgloss.Color(cfg.PrimaryColor)).
 			MarginBottom(1),
 
 		descriptionStyle: lipgloss.NewStyle().
 			Align(lipgloss.Center).
-			Foreground(lipgloss.Color("#FAFAFA")).
+			Foreground(lipgloss.Color(cfg.SecondaryColor)).
 			Italic(true).
 			MarginBottom(1),
 
@@ -48,7 +51,7 @@ func NewConfirmModelStyles() Styles {
 
 		docStyle: lipgloss.NewStyle().
 			BorderStyle(lipgloss.RoundedBorder()).
-			BorderForeground(lipgloss.Color("#7D56F4")).
+			BorderForeground(lipgloss.Color(cfg.PrimaryColor)).
 			Padding(1, 2).
 			Align(lipgloss.Center),
 	}
