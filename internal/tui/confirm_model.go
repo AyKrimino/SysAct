@@ -3,6 +3,7 @@ package tui
 import (
 	"time"
 
+	"github.com/AyKrimino/SysAct/internal/config"
 	"github.com/charmbracelet/bubbles/timer"
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -15,12 +16,14 @@ type ConfirmModel struct {
 	styles Styles
 	width  int
 	height int
+	config *config.Config
 }
 
-func NewConfirmModel() ConfirmModel {
+func NewConfirmModel(config *config.Config) ConfirmModel {
 	return ConfirmModel{
 		timer:  timer.NewWithInterval(timeout, time.Millisecond),
 		styles: NewConfirmModelStyles(),
+		config: config,
 	}
 }
 

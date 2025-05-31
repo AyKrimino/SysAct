@@ -36,7 +36,7 @@ func (rm RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case ConfirmRequestedMsg:
 		logging.InfoLogger.Printf("action %d requested", msg.Action)
-		rm.confirm = NewConfirmModel()
+		rm.confirm = NewConfirmModel(rm.confirm.config)
 		rm.confirm.action = msg.Action
 		rm.screen = ConfirmModelScreen
 		return rm, rm.confirm.Init()

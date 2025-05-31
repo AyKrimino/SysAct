@@ -1,0 +1,120 @@
+# config.toml.example
+#
+# Copy this file to ~/.config/sysact/config.toml and edit values as desired.
+# Lines starting with # are comments—remove or update them as needed.
+
+##############################
+# Global Settings
+##############################
+
+# Default UI language
+default_language = "en"
+
+# Seconds before auto-confirm on the confirm dialog
+confirm_timeout = 5
+
+# Which key the user presses to move up in lists
+key_up = ["up", "k"]        # examples: "up", "k"
+
+# Which key the user presses to move down in lists
+key_down = ["down", "j"]    # examples: "down", "j"
+
+# Which key the user presses to confirm an action
+key_confirm = ["enter", "y"]  # examples: "enter", "y"
+
+# Which key the user presses to cancel/exit
+key_cancel = ["esc", "n"]     # examples: "esc", "n"
+
+# Show help text at bottom of main screen
+show_help = true
+
+# Enable or disable logging to file
+enable_logging = true
+
+# Minimum level to log: "debug", "info", "warning", "error", "fatal"
+log_level = "info"
+
+##############################
+# Theme & Colors
+##############################
+
+# Primary accent color (hex)
+primary_color = "#50fa7b"
+
+# Secondary accent color (hex)
+secondary_color = "#ff79c6"
+
+# Style for highlighted items: any of "bold", "underline", "reverse", or combination
+highlight_style = "bold_underline"
+
+##############################
+# Localization Strings
+##############################
+
+# English (default)
+[lang.en]
+title            = "System Actions"
+logout_label     = "Logout"
+logout_desc      = "End the current user session and return to the login screen."
+suspend_label    = "Suspend"
+suspend_desc     = "Pause the system, saving the session to memory and entering a low-power state."
+reboot_label     = "Reboot"
+reboot_desc      = "Restart the system, closing all applications and reinitializing the operating system."
+poweroff_label   = "Poweroff"
+poweroff_desc    = "Completely shut down the system, turning off all hardware components."
+confirm_title    = "Are you sure?"
+confirm_body     = "Press {{key_confirm}} to confirm or wait {{confirm_timeout}}s…"
+confirm_yes      = "Yes"
+confirm_no       = "No"
+help_text        = "↑/↓: navigate • {{key_confirm}}: select • {{key_cancel}}: quit"
+
+# French
+[lang.fr]
+title            = "Actions Système"
+logout_label     = "Se déconnecter"
+logout_desc      = "Terminez la session en cours et revenez à l'écran de connexion."
+suspend_label    = "Suspendre"
+suspend_desc     = "Mettez le système en veille, en enregistrant la session en mémoire."
+reboot_label     = "Redémarrer"
+reboot_desc      = "Redémarrez le système, en fermant toutes les applications."
+poweroff_label   = "Arrêter"
+poweroff_desc    = "Arrêtez complètement le système et éteignez le matériel."
+confirm_title    = "Êtes-vous sûr ?"
+confirm_body     = "Appuyez sur {{key_confirm}} pour confirmer ou attendez {{confirm_timeout}}s…"
+confirm_yes      = "Oui"
+confirm_no       = "Non"
+help_text        = "↑/↓: naviguer • {{key_confirm}}: valider • {{key_cancel}}: quitter"
+
+# Spanish
+[lang.es]
+title            = "Acciones del Sistema"
+logout_label     = "Cerrar sesión"
+logout_desc      = "Finaliza la sesión actual y vuelve a la pantalla de inicio de sesión."
+suspend_label    = "Suspender"
+suspend_desc     = "Suspende el sistema, guardando la sesión en la memoria."
+reboot_label     = "Reiniciar"
+reboot_desc      = "Reinicia el sistema, cerrando todas las aplicaciones."
+poweroff_label   = "Apagar"
+poweroff_desc    = "Apaga completamente el sistema, apagando el hardware."
+confirm_title    = "¿Estás seguro?"
+confirm_body     = "Pulsa {{key_confirm}} para confirmar o espera {{confirm_timeout}}s…"
+confirm_yes      = "Sí"
+confirm_no       = "No"
+help_text        = "↑/↓: navegar • {{key_confirm}}: seleccionar • {{key_cancel}}: salir"
+
+# Arabic (in right-to-left contexts users will need a terminal supporting RTL)
+[lang.ar]
+title            = "إجراءات النظام"
+logout_label     = "تسجيل الخروج"
+logout_desc      = "إنهاء الجلسة الحالية والعودة إلى شاشة تسجيل الدخول."
+suspend_label    = "تعليق"
+suspend_desc     = "تعليق النظام وحفظ الجلسة في الذاكرة."
+reboot_label     = "إعادة التشغيل"
+reboot_desc      = "إعادة تشغيل النظام، وإغلاق جميع التطبيقات."
+poweroff_label   = "إيقاف التشغيل"
+poweroff_desc    = "إيقاف النظام بالكامل وإيقاف تشغيل الأجهزة."
+confirm_title    = "هل أنت متأكد؟"
+confirm_body     = "اضغط {{key_confirm}} للتأكيد أو انتظر {{confirm_timeout}}ث…"
+confirm_yes      = "نعم"
+confirm_no       = "لا"
+help_text        = "↑/↓: تنقل • {{key_confirm}}: تأكيد • {{key_cancel}}: خروج"
