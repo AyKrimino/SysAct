@@ -1,72 +1,107 @@
 # config.toml.example
 #
-# Copy this file to ~/.config/sysact/config.toml and edit values as desired.
-# Lines starting with # are comments—remove or update them as needed.
+# Copy this file to ~/.config/sysact/config.toml and adjust values as needed.
 
 ##############################
 # Global Settings
 ##############################
 
-# Default UI language
+# The language code to use for all UI strings (must match one of the [lang.*] sections).
+# Default: "en"
 default_language = "en"
 
-# Seconds before auto-confirm on the confirm dialog
+# Number of seconds before auto-confirm in the confirmation dialog.
+# Must be between 1 and 60 (inclusive).
+# Default: 5
 confirm_timeout = 5
 
-# Which key the user presses to move up in lists
-key_up = "up"        # examples: "up", "k"
+# Keybindings for navigating and controlling the TUI.
+# Use any string that Bubble Tea’s key-binding parser accepts (e.g., "up", "k", "j", "enter", "esc", "q").
 
-# Which key the user presses to move down in lists
-key_down = "down"    # examples: "down", "j"
+# Key to move selection up in lists.
+# Default: "up"
+key_up = "up"
 
-# Which key the user presses to confirm an action
-key_confirm = "enter"  # examples: "enter", "y"
+# Key to move selection down in lists.
+# Default: "down"
+key_down = "down"
 
-# Which key the user presses to cancel/exit
-key_cancel = "esc"     # examples: "esc", "n"
+# Key to confirm or choose an action.
+# Default: "enter"
+key_confirm = "enter"
 
-# Which key the user presses to quit screen
-key_quit = "q"     # examples "q", "ctrl+c"
+# Key to cancel or back out of a prompt.
+# Default: "esc"
+key_cancel = "esc"
 
-# Which key the user presses to select an action
-key_select = "enter"  # examples "enter", " "
+# Key to immediately quit the application.
+# Default: "q"
+key_quit = "q"
 
-# Show help text at bottom of main screen
+# Key to select an item (alias of key_confirm if desired).
+# Default: "enter"
+key_select = "enter"
+
+# If true, show the help text (footer) at the bottom of the main list screen.
+# Default: false
 show_help = false
 
-# Enable or disable logging to file
+# If true, write log messages to a rotating log file under logs/sysact.log.
+# Default: true
 enable_logging = true
-
-# Minimum level to log: "debug", "info", "warning", "error", "fatal"
-log_level = "info"
 
 ##############################
 # Theme & Colors
 ##############################
 
-# Primary accent color (hex)
-primary_color   = "#87CEEB"
+# Primary accent color (must be a valid 6-digit hex code, prefixed with “#”).
+# Used for titles, borders, etc.
+# Default: "#87CEEB"  (sky blue)
+primary_color = "#87CEEB"
 
-# Secondary accent color (hex)
+# Secondary accent color (must be a valid 6-digit hex code, prefixed with “#”).
+# Used for highlights, backgrounds in confirmation dialog, etc.
+# Default: "#FFD700"  (gold)
 secondary_color = "#FFD700"
 
 ##############################
 # Localization Strings
 ##############################
 
+# Each [lang.<code>] section defines all text labels in that language.
+# You must provide exactly one table for each language code you wish to support.
+#
+# Within each [lang.<code>], be sure to include all fields; any missing field
+# will fall back to the default values.
+
 # English (default)
 [lang.en]
+# Window title / header
 title            = "SysAct - System Actions"
+
+# Label and description for Logout action
 logout_label     = "Logout"
 logout_desc      = "End the current user session and return to the login screen."
+
+# Label and description for Suspend action
 suspend_label    = "Suspend"
 suspend_desc     = "Pause the system, saving the session to memory and entering a low-power state."
+
+# Label and description for Reboot action
 reboot_label     = "Reboot"
 reboot_desc      = "Restart the system, closing all applications and reinitializing the operating system."
+
+# Label and description for Poweroff action
 poweroff_label   = "Poweroff"
 poweroff_desc    = "Completely shut down the system, turning off all hardware components."
+
+# Title shown at the top of the confirm dialog
 confirm_title    = "Are you sure?"
+
+# Body text for confirm dialog; "{{key_confirm}}" will be replaced at runtime
 confirm_body     = "Press {{key_confirm}} to confirm"
+
+# Body text shown while counting down to auto-cancel; "{{confirm_timeout}}" replaced at runtime
 cancel_body      = "Canceling in"
 
 # French
@@ -99,7 +134,7 @@ confirm_title    = "¿Estás seguro?"
 confirm_body     = "Pulsa {{key_confirm}} para confirmar"
 cancel_body      = "Cancelando en"
 
-# Arabic (in right-to-left contexts users will need a terminal supporting RTL)
+# Arabic (right-to-left; requires a terminal with bidi support)
 [lang.ar]
 title            = "SysAct - إجراءات النظام"
 logout_label     = "تسجيل الخروج"
