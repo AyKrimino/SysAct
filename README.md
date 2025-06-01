@@ -20,6 +20,16 @@
 
 ---
 
+## 📽️ Demo
+
+Below is a GIF demonstrating how to navigate through the list and open the confirmation dialog:
+
+![SysAct Demo](./assets/demo.gif)
+
+*In this demo, arrow keys move the selection; pressing Enter opens the confirm dialog with a countdown.*
+
+---
+
 ## ⚙️ Installation
 
 There are two main ways to install SysAct:
@@ -163,15 +173,30 @@ This installs `/usr/bin/sysact` so you can launch by typing `sysact` in any term
 
 ## 🤝 Contributing
 
-Contributions are welcome! To propose a change:
+Contributions are welcome! Here are some ideas for ongoing improvements:
 
-1. Fork the repository.
-2. Create a new branch:  `git checkout -b feature/my-feature`
-3. Make and commit your changes:  `git commit -m "feat: add my-feature"`
-4. Push to your fork:  `git push origin feature/my-feature`
-5. Open a pull request on the main repo.
+* **Enhance Confirm Dialog Styles**: Add more color themes, borders, or animations to the confirmation screen.
+* **Improve Logout Detection**: Support additional desktop environments or window managers beyond the defaults. Provide a fallback if `$XDG_CURRENT_DESKTOP` is missing.
+* **Add Unit Tests**: Write tests for `internal/system/utils.go` and other packages to cover logout command resolution, command execution, and configuration merging.
+* **New Localization**: Add more languages by creating new `[lang.<code>]` tables in `config.toml`.
+* **Packaging for Other Distros**: Maintain an RPM spec file or Snapcraft YAML for Fedora/Snapcraft users.
 
-Follow existing code style, add tests when appropriate, and update this README if you introduce new features.
+To contribute:
+
+1. Fork the repo.
+2. Create a new branch:
+
+   ```sh
+   git checkout -b feature/my-improvement
+   ```
+3. Implement your changes, commit with a descriptive message:
+
+   ```sh
+   git commit -m "feat: add dark theme option"
+   ```
+4. Push your branch and open a pull request.
+
+Please follow the existing code style and update this README if you add new configuration keys or features.
 
 ---
 
